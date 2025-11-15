@@ -223,21 +223,9 @@ export default function Predictions() {
             onAskAI={handleAskAI}
             isAILoading={isAILoading}
             aiAnalysis={aiAnalysis}
+            onReset={handleReset}
           />
         </div>
-
-        {/* Reset Button - Below grid */}
-        {result && (
-          <div className="mb-4">
-            <Button
-              onClick={handleReset}
-              variant="outline"
-              className="w-full"
-            >
-              Analisis Lahan Baru
-            </Button>
-          </div>
-        )}
 
         {/* AI Analysis Section - Below everything */}
         {result && result.status !== 'Error' && (aiAnalysis || isAILoading || aiError) && (

@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Loader2 } from "lucide-react";
+import { Sparkles, Loader2, RefreshCw } from "lucide-react";
 
 interface PredictionResultProps {
   result: {
@@ -18,9 +18,10 @@ interface PredictionResultProps {
     improvements: string[];
     nextSteps: string[];
   } | null;
+  onReset?: () => void;
 }
 
-export function PredictionResult({ result, onAskAI, isAILoading, aiAnalysis }: PredictionResultProps) {
+export function PredictionResult({ result, onAskAI, isAILoading, aiAnalysis, onReset }: PredictionResultProps) {
   const getGaugeColor = (status: string) => {
     if (status === 'Sangat Cocok') return "text-green-600";
     if (status === 'Cukup Cocok') return "text-yellow-600";
@@ -149,26 +150,48 @@ export function PredictionResult({ result, onAskAI, isAILoading, aiAnalysis }: P
           </div>
         )}
 
-        {/* AI Analysis Button - Muncul setelah prediksi */}
-        {result && result.status !== 'Error' && !aiAnalysis && (
-          <div className="mt-6 pt-6 border-t">
-            <Button
-              onClick={onAskAI}
-              disabled={isAILoading}
-              className="w-full bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isAILoading ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  AI Sedang Menganalisis...
-                </>
-              ) : (
-                <>
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Tanya AI untuk Analisis Mendalam
-                </>
-              )}
-            </Button>
+        {/* Action Buttons - Muncul setelah prediksi */}
+        {result && result.status !== 'Error' && (
+          <div className="mt-6 pt-6 border-t w-full">
+            {!aiAnalysis && (
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <Button
+                  onClick={onReset}
+                  variant="outline"
+                  className="h-12 border-2 hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-200 font-medium cursor-pointer"
+                >
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Analisis Baru
+                </Button>
+                <Button
+                  onClick={onAskAI}
+                  disabled={isAILoading}
+                  className="h-12 bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  {isAILoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Menganalisis...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      Tanya AI
+                    </>
+                  )}
+                </Button>
+              </div>
+            )}
+            {aiAnalysis && (
+              <Button
+                onClick={onReset}
+                variant="outline"
+                className="w-full h-12 border-2 hover:bg-linear-to-r hover:from-green-50 hover:to-emerald-50 dark:hover:from-green-950 dark:hover:to-emerald-950 transition-all duration-200 font-semibold group"
+              >
+                <RefreshCw className="mr-2 h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
+                Mulai Analisis Lahan Baru
+              </Button>
+            )}
           </div>
         )}
       </CardContent>
