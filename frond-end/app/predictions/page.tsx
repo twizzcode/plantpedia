@@ -47,7 +47,7 @@ export default function Predictions() {
     setResult(null);
     setAiAnalysis(null);
     
-    const API_URL = 'https://c0f111e68671.ngrok-free.app/validate_crop';
+    const API_URL = 'https://d028efb77841.ngrok-free.app/validate_crop';
     // const API_URL = 'http://localhost:5000/validate_crop';
     
     const dataInput = {
