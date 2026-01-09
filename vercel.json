@@ -1,5 +1,6 @@
 {
-  "buildCommand": "cd frond-end && npm run build",
-  "outputDirectory": "frond-end/.next",
-  "installCommand": "cd frond-end && npm install"
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "framework": "nextjs"
 }
