@@ -50,11 +50,11 @@ const teamMembers = [
 export default function AboutUs() {
   return (
     <TooltipProvider delayDuration={200}>
-      <div className="min-h-screen pt-20 pb-12 bg-linear-to-b from-green-50/50 to-background dark:from-green-950/20">
+      <div className="min-h-screen pt-20 pb-12">
         <div className="container mx-auto px-4 max-w-6xl">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-linear-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Tentang Kami
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

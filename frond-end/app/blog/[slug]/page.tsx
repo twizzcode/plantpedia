@@ -24,7 +24,7 @@ export default function PlantDetail() {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-12 bg-linear-to-b from-green-50/50 to-background dark:from-green-950/20">
+    <div className="min-h-screen pt-20 pb-12">
       <div className="container mx-auto px-4 max-w-5xl">
         {/* Back Button */}
         <Button

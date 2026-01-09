@@ -2,6 +2,7 @@
 
 import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 import {
   Accordion,
@@ -56,122 +57,7 @@ interface Navbar1Props {
   };
 }
 
-const Navbar1 = ({
-  logo = {
-    url: "https://www.shadcnblocks.com",
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
-    alt: "logo",
-    title: "PlantPedia",
-  },
-  menu = [
-    { title: "Home", url: "/" },
-    {
-      title: "Predictions",
-      url: "/predictions",
-    },
-    {
-      title: "Blog",
-      url: "/blog",
-    },
-    {
-      title: "About Us",
-      url: "/about-us",
-    },
-  ],
-}: Navbar1Props) => {
-  const pathname = usePathname();
-
-  return (
-    <section className="py-4 fixed w-full top-0 bg-background/50 backdrop-blur-md z-50">
-      <div className="container mx-auto px-4">
-        {/* Desktop Menu */}
-        <nav className="hidden items-center justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            {/* Logo */}
-            <Link href={logo.url} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <Image
-                src="/logo.png"
-                width={50}
-                height={50}
-                className="max-h-8 w-8 dark:invert"
-                alt={logo.alt}
-              />
-              <span className="text-lg font-bold text-green-700 tracking-tight">
-                {logo.title}
-              </span>
-            </Link>
-          </div>
-          <div className="flex items-center">
-            <NavigationMenu>
-              <NavigationMenuList className="gap-3">
-                {menu.map((item) => renderMenuItem(item, pathname))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-          <div className="flex gap-2">
-            <Button asChild variant="outline" size="sm">
-              <a href={logo.url}>Login</a>
-            </Button>
-            <Button asChild variant="outline" size="sm">
-              <a href={logo.url}>Login</a>
-            </Button>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href={logo.url} className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                width={50}
-                height={50}
-                className="max-h-8 w-8 dark:invert"
-                alt={logo.alt}
-              />
-            </Link>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="overflow-y-auto">
-                <SheetHeader>
-                  <SheetTitle>
-                    <Link href={logo.url} className="flex items-center gap-2">
-                      <Image
-                        src={logo.src}
-                        width={50}
-                        height={50}
-                        className="max-h-8 w-8 dark:invert"
-                        alt={logo.alt}
-                      />
-                    </Link>
-                  </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 p-4">
-                  <Accordion
-                    type="single"
-                    collapsible
-                    className="flex w-full flex-col gap-4"
-                  >
-                    {menu.map((item) => renderMobileMenuItem(item, pathname))}
-                  </Accordion>
-
-                  <div className="flex flex-col gap-3">
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
+// Helper functions
 const renderMenuItem = (item: MenuItem, pathname: string) => {
   if (item.items) {
     return (
@@ -224,6 +110,120 @@ const renderMobileMenuItem = (item: MenuItem, pathname: string) => {
     >
       {item.title}
     </Link>
+  );
+};
+
+const Navbar1 = ({
+  logo = {
+    url: "https://www.shadcnblocks.com",
+    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+    alt: "logo",
+    title: "PlantPedia",
+  },
+  menu = [
+    { title: "Home", url: "/" },
+    {
+      title: "Predictions",
+      url: "/predictions",
+    },
+    {
+      title: "Blog",
+      url: "/blog",
+    },
+    {
+      title: "About Us",
+      url: "/about-us",
+    },
+  ],
+}: Navbar1Props) => {
+  const pathname = usePathname();
+
+  return (
+    <section className="py-4 fixed w-full top-0 bg-background/50 backdrop-blur-md z-50">
+      <div className="container mx-auto px-4">
+        {/* Desktop Menu */}
+        <nav className="hidden items-center justify-between lg:flex">
+          <div className="flex items-center gap-6">
+            {/* Logo */}
+            <Link href={logo.url} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Image
+                src="/logo.png"
+                width={50}
+                height={50}
+                className="max-h-8 w-8"
+                alt={logo.alt}
+              />
+              <span className="text-lg font-bold text-green-700 tracking-tight">
+                {logo.title}
+              </span>
+            </Link>
+          </div>
+          <div className="flex items-center">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-3">
+                {menu.map((item) => renderMenuItem(item, pathname))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+          <div className="flex gap-2 items-center">
+            <ThemeToggle />
+          </div>
+        </nav>
+
+        {/* Mobile Menu */}
+        <div className="block lg:hidden">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link href={logo.url} className="flex items-center gap-2">
+              <Image
+                src="/logo.png"
+                width={50}
+                height={50}
+                className="max-h-8 w-8"
+                alt={logo.alt}
+              />
+            </Link>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="size-4" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <Link href={logo.url} className="flex items-center gap-2">
+                        <Image
+                          src="/logo.png"
+                          width={50}
+                          height={50}
+                          className="max-h-8 w-8"
+                          alt={logo.alt}
+                        />
+                      </Link>
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-6 p-4">
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="flex w-full flex-col gap-4"
+                    >
+                      {menu.map((item) => renderMobileMenuItem(item, pathname))}
+                    </Accordion>
+
+                    <div className="flex flex-col gap-3">
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

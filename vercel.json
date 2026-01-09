@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd frond-end && npm run build",
+  "outputDirectory": "frond-end/.next",
+  "installCommand": "cd frond-end && npm install"
+}

@@ -7,11 +7,11 @@ import Link from "next/link";
 
 export default function Blog() {
   return (
-    <div className="min-h-screen pt-20 pb-12 bg-linear-to-b from-green-50/50 to-background dark:from-green-950/20">
+    <div className="min-h-screen pt-20 pb-12">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-linear-to-r from-green-600 to-emerald-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
             Panduan Lengkap Budidaya Tanaman
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">

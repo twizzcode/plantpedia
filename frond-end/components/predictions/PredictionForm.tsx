@@ -27,28 +27,15 @@ interface PredictionFormProps {
   onAnalyze: () => void;
 }
 
+// Hanya 8 tanaman yang didukung backend
 const PLANT_OPTIONS = [
   { value: "Padi", label: "🌾 Padi (Rice)" },
   { value: "Jagung", label: "🌽 Jagung (Maize)" },
-  { value: "Kacang Arab", label: "🫘 Kacang Arab (Chickpea)" },
-  { value: "Kacang Merah", label: "🫘 Kacang Merah (Kidney Beans)" },
-  { value: "Kacang Gude", label: "🫛 Kacang Gude (Pigeon Peas)" },
-  { value: "Kacang Moth", label: "🫘 Kacang Moth (Moth Beans)" },
-  { value: "Kacang Hijau", label: "🫛 Kacang Hijau (Mung Bean)" },
-  { value: "Kacang Hitam", label: "⚫ Kacang Hitam (Black Gram)" },
-  { value: "Lentil", label: "🫘 Lentil (Lentil)" },
-  { value: "Delima", label: "🍎 Delima (Pomegranate)" },
-  { value: "Pisang", label: "🍌 Pisang (Banana)" },
-  { value: "Mangga", label: "🥭 Mangga (Mango)" },
-  { value: "Anggur", label: "🍇 Anggur (Grapes)" },
   { value: "Semangka", label: "🍉 Semangka (Watermelon)" },
   { value: "Melon", label: "🍈 Melon (Muskmelon)" },
-  { value: "Apel", label: "🍎 Apel (Apple)" },
   { value: "Jeruk", label: "🍊 Jeruk (Orange)" },
   { value: "Pepaya", label: "🫐 Pepaya (Papaya)" },
-  { value: "Kelapa", label: "🥥 Kelapa (Coconut)" },
-  { value: "Kapas", label: "☁️ Kapas (Cotton)" },
-  { value: "Rami", label: "🌿 Rami (Jute)" },
+  { value: "Pisang", label: "🍌 Pisang (Banana)" },
   { value: "Kopi", label: "☕ Kopi (Coffee)" },
 ];
 

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar1 } from "@/components/navbar1";
 import { Footer2 } from "@/components/footer2";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,9 +58,7 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: [
-      { url: "/logo.png", type: "image/png", sizes: "32x32" },
-    ],
+    icon: "/logo.png",
   },
   manifest: "/manifest.json",
 };
@@ -70,18 +69,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
       <head>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar1 />
-        <main className="container mx-auto md:px-4">
-          {children}
-        </main>
-        <Footer2 />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar1 />
+          <main className="container mx-auto md:px-4">
+            {children}
+          </main>
+          <Footer2 />
+        </ThemeProvider>
       </body>
     </html>
   );

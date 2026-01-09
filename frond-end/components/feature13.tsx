@@ -1,3 +1,7 @@
+"use client";
+
+import { FadeIn } from "@/components/ui/fade-in";
+
 interface Feature {
   id: string;
   heading: string;
@@ -57,43 +61,44 @@ const Feature13 = ({
     <section className="py-32">
       <div className="container">
         {title && (
-          <div className="mx-auto mb-16 max-w-3xl text-center">
-            <h2 className="text-pretty text-4xl font-medium lg:text-5xl">
-              {title}
-            </h2>
-          </div>
+          <FadeIn>
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <h2 className="text-pretty text-4xl font-medium lg:text-5xl hover:text-primary transition-colors duration-300">
+                {title}
+              </h2>
+            </div>
+          </FadeIn>
         )}
         <div className="grid gap-8 lg:grid-cols-2">
-          {features.map((feature) => (
-            <div
-              key={feature.id}
-              className="bg-muted flex flex-col justify-between rounded-lg"
-            >
-              <div className="flex justify-between gap-10 border-b">
-                <div className="flex flex-col justify-between gap-8 py-6 pl-4 md:gap-14 md:py-10 md:pl-8 lg:justify-normal">
-                  <span className="text-muted-foreground font-mono text-xs">
-                    {feature.label}
-                  </span>
-                  <a href={feature.url}>
-                    <h3 className="hover:text-primary text-2xl transition-all hover:opacity-80 sm:text-3xl lg:text-4xl">
-                      {feature.heading}
-                    </h3>
-                  </a>
+          {features.map((feature, index) => (
+            <FadeIn key={feature.id} delay={index * 100} direction={index % 2 === 0 ? "left" : "right"}>
+              <div className="bg-muted flex flex-col justify-between rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group">
+                <div className="flex justify-between gap-10 border-b">
+                  <div className="flex flex-col justify-between gap-8 py-6 pl-4 md:gap-14 md:py-10 md:pl-8 lg:justify-normal">
+                    <span className="text-muted-foreground font-mono text-xs group-hover:text-primary transition-colors duration-300">
+                      {feature.label}
+                    </span>
+                    <a href={feature.url}>
+                      <h3 className="hover:text-primary text-2xl transition-all duration-300 hover:translate-x-2 sm:text-3xl lg:text-4xl">
+                        {feature.heading}
+                      </h3>
+                    </a>
+                  </div>
+                  <div className="md:1/3 w-2/5 shrink-0 rounded-r-lg border-l overflow-hidden">
+                    <a href={feature.url}>
+                      <img
+                        src={feature.image}
+                        alt={feature.heading}
+                        className="h-full w-full rounded-t-lg object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+                      />
+                    </a>
+                  </div>
                 </div>
-                <div className="md:1/3 w-2/5 shrink-0 rounded-r-lg border-l">
-                  <a href={feature.url}>
-                    <img
-                      src={feature.image}
-                      alt={feature.heading}
-                      className="h-full w-full rounded-t-lg object-cover transition-opacity hover:opacity-80"
-                    />
-                  </a>
-                </div>
+                <p className="text-muted-foreground p-4 md:p-8 group-hover:text-foreground transition-colors duration-300">
+                  {feature.description}
+                </p>
               </div>
-              <p className="text-muted-foreground p-4 md:p-8">
-                {feature.description}
-              </p>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>

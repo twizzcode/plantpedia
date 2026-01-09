@@ -47,7 +47,7 @@ export default function Predictions() {
     setResult(null);
     setAiAnalysis(null);
     
-    const API_URL = 'https://d028efb77841.ngrok-free.app/validate_crop';
+    const API_URL = 'https://plantpedia.twizzcode.my.id/validate_crop';
     // const API_URL = 'http://localhost:5000/validate_crop';
     
     const dataInput = {
@@ -181,11 +181,11 @@ export default function Predictions() {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-4 bg-linear-to-b from-green-50/50 to-background dark:from-green-950/20">
+    <div className="min-h-screen pt-28 pb-4">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 bg-linear-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">
             Analisis Lahan Pertanian
           </h1>
           <p className="text-muted-foreground text-sm md:text-base">
@@ -196,42 +196,46 @@ export default function Predictions() {
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-4 mb-4">
           {/* Form - Left Column */}
-          <PredictionForm
-            selectedPlant={selectedPlant}
-            setSelectedPlant={setSelectedPlant}
-            nitrogen={nitrogen}
-            setNitrogen={setNitrogen}
-            phosphorus={phosphorus}
-            setPhosphorus={setPhosphorus}
-            potassium={potassium}
-            setPotassium={setPotassium}
-            temperature={temperature}
-            setTemperature={setTemperature}
-            humidity={humidity}
-            setHumidity={setHumidity}
-            ph={ph}
-            setPh={setPh}
-            rainfall={rainfall}
-            setRainfall={setRainfall}
-            isAnalyzing={isAnalyzing}
-            onAnalyze={handleAnalyze}
-          />
+          <div>
+            <PredictionForm
+              selectedPlant={selectedPlant}
+              setSelectedPlant={setSelectedPlant}
+              nitrogen={nitrogen}
+              setNitrogen={setNitrogen}
+              phosphorus={phosphorus}
+              setPhosphorus={setPhosphorus}
+              potassium={potassium}
+              setPotassium={setPotassium}
+              temperature={temperature}
+              setTemperature={setTemperature}
+              humidity={humidity}
+              setHumidity={setHumidity}
+              ph={ph}
+              setPh={setPh}
+              rainfall={rainfall}
+              setRainfall={setRainfall}
+              isAnalyzing={isAnalyzing}
+              onAnalyze={handleAnalyze}
+            />
+          </div>
 
           {/* Result - Right Column */}
-          <PredictionResult 
-            result={result}
-            onAskAI={handleAskAI}
-            isAILoading={isAILoading}
-            aiAnalysis={aiAnalysis}
-            onReset={handleReset}
-          />
+          <div>
+            <PredictionResult 
+              result={result}
+              onAskAI={handleAskAI}
+              isAILoading={isAILoading}
+              aiAnalysis={aiAnalysis}
+              onReset={handleReset}
+            />
+          </div>
         </div>
 
         {/* AI Analysis Section - Below everything */}
         {result && result.status !== 'Error' && (aiAnalysis || isAILoading || aiError) && (
           <AIAnalysis
-            aiAnalysis={aiAnalysis}
-            isLoading={isAILoading}
+              aiAnalysis={aiAnalysis}
+              isLoading={isAILoading}
             error={aiError}
           />
         )}
